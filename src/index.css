@@ -1,96 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
+/* Medical Education Platform Design System */
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Medical Brand Colors */
+    --medical-primary: 174 100% 29%;          /* Deep medical teal */
+    --medical-primary-light: 174 76% 45%;     /* Lighter teal */
+    --medical-secondary: 199 89% 48%;         /* Medical blue */
+    --medical-accent: 142 76% 36%;            /* Medical green */
+    --medical-warning: 38 92% 50%;            /* Medical amber */
+    --medical-success: 142 71% 45%;           /* Success green */
+    
+    /* Background & Surface */
+    --background: 220 27% 98%;                /* Soft white */
+    --surface: 0 0% 100%;                     /* Pure white */
+    --surface-elevated: 210 17% 98%;          /* Elevated surface */
+    
+    /* Text Colors */
+    --foreground: 215 25% 27%;                /* Dark blue-gray */
+    --foreground-muted: 215 16% 47%;          /* Muted text */
+    --foreground-subtle: 215 14% 64%;         /* Subtle text */
+    
+    /* Interactive Elements */
+    --primary: var(--medical-primary);
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 17% 96%;
+    --secondary-foreground: var(--foreground);
+    --accent: var(--medical-accent);
+    --accent-foreground: 0 0% 100%;
+    
+    /* Cards & Components */
+    --card: var(--surface);
+    --card-foreground: var(--foreground);
+    --border: 215 20% 88%;
+    --input: 215 20% 92%;
+    --ring: var(--medical-primary);
+    
+    /* Semantic Colors */
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --muted: var(--secondary);
+    --muted-foreground: var(--foreground-muted);
+    --popover: var(--surface);
+    --popover-foreground: var(--foreground);
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--medical-primary)), hsl(var(--medical-primary-light)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--medical-primary)) 0%, hsl(var(--medical-secondary)) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(var(--surface)) 0%, hsl(var(--surface-elevated)) 100%);
+    
+    /* Shadows */
+    --shadow-soft: 0 2px 8px hsl(var(--medical-primary) / 0.08);
+    --shadow-medium: 0 4px 16px hsl(var(--medical-primary) / 0.12);
+    --shadow-strong: 0 8px 32px hsl(var(--medical-primary) / 0.16);
+    --shadow-glow: 0 0 32px hsl(var(--medical-primary) / 0.2);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --radius: 0.75rem;
   }
 }
 
@@ -100,6 +73,79 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-playfair;
+  }
+}
+
+@layer components {
+  /* Medical Note Cards */
+  .medical-card {
+    @apply relative bg-gradient-to-br from-card to-surface-elevated border border-border/50 rounded-xl p-6 shadow-soft hover:shadow-medium transition-all duration-300 hover:-translate-y-1;
+  }
+
+  .medical-card::before {
+    @apply absolute inset-0 rounded-xl bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity duration-300;
+    content: '';
+  }
+
+  .medical-card:hover::before {
+    @apply opacity-100;
+  }
+
+  /* Hero Gradient Background */
+  .hero-gradient {
+    background: var(--gradient-hero);
+  }
+
+  /* Glass Effect */
+  .glass-effect {
+    @apply backdrop-blur-md bg-white/80 border border-white/20;
+  }
+
+  /* Medical Button Variants */
+  .btn-medical {
+    @apply relative overflow-hidden bg-gradient-to-r from-primary to-primary-light text-primary-foreground px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:shadow-glow hover:scale-105;
+  }
+
+  .btn-medical::before {
+    @apply absolute inset-0 bg-white/20 translate-x-[-100%] transition-transform duration-500;
+    content: '';
+  }
+
+  .btn-medical:hover::before {
+    @apply translate-x-[100%];
+  }
+
+  /* Animated Underline Links */
+  .link-animated {
+    @apply relative inline-block text-primary transition-colors duration-300 hover:text-primary-light;
+  }
+
+  .link-animated::after {
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-primary-light transition-all duration-300;
+    content: '';
+  }
+
+  .link-animated:hover::after {
+    @apply w-full;
+  }
+
+  /* Tag Styles */
+  .tag {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-primary/10 text-primary border border-primary/20;
+  }
+
+  /* Progress Indicator */
+  .progress-ring {
+    @apply relative w-12 h-12 rounded-full bg-gradient-to-br from-primary/20 to-accent/20;
+  }
+
+  .progress-ring::before {
+    @apply absolute inset-1 rounded-full bg-background;
+    content: '';
   }
 }
